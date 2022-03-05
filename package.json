@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "english-words": "^0.0.1",
+    "word-list": "^3.1.0"
+  }
+}
