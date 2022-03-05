@@ -1,0 +1,6 @@
+{
+    "name": "Wordle Assistant",
+    "description": "Assists people with Wordle",
+    "version": "1.0",
+    "manifest_version": 2
+}
