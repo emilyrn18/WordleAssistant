@@ -68,51 +68,85 @@ for(tries=1; tries<7;tries++){
         }
 
         if(letter_type == "g"){
-            green_letters[usedword[i]] = i;
+            if(green_letters[usedword[i]] == null){
+                green_letters[usedword[i]] = [i]; 
+            }else{
+                green_letters[usedword[i]].push(i);
+            }
         }
     }
 
-    console.log("Black letters: " + black_letters);
-    console.log("Yellow letters: " + yellow_letters["p"]);
-    console.log("Green letters: " + green_letters["a"]);
+    // console.log("Black letters: " + black_letters);
+    // console.log("Yellow letters: " + yellow_letters["p"]);
+    // console.log("Green letters: " + green_letters["a"]);
 
+    console.log("Length of dictionary: " + dictionary.length);
     //Trying to remove words with b, and refining the list by g and y
     for (i = 0; i < dictionary.length; i++){
         
         //remove the words with b
 
-        var word = dictionary[i];
+        var word = dictionary[i].toLowerCase();
+        //green
+        var idc = false;
+        var cont = false;
+        for (const [key, value] of Object.entries(green_letters)) {
+            // console.log(key, value);
+            for(h=0;h<value.length;h++){
+                if(word[value[h]] != key){
+                    dictionary.splice(i, 1); //remove the word
+                    i--;
+                    idc = true;
+                    cont = true;
+                    break;
+                }
+            }
+            if(idc){
+                break;
+            }
+        }
+
+        if(cont){
+            continue;
+        }
+
         //black
         for (x = 0; x < 5; x++){
             if(arrayContains(black_letters, word[x])){
                 dictionary.splice(i, 1); //remove and skip the word
-                continue; 
+                i--;
+                cont = true;
+                break; 
             }
         }
-        //green
-        for (y = 0; y < 5; y++){
-            if (green_letters[word[y]] != null){
-                if (green_letters[word[y]] != y){
-                    dictionary.splice(i, 1); //remove the word
-                    continue;
-                }
-            }
+
+        if(cont){
+            continue;
         }
         //yellow
         var doICont = false;
         for (z = 0; z < 5; z++){
+            doICont = false;
             if (yellow_letters[word[z]] != null){
                 for (m = 0; m < yellow_letters[word[z]].length; m++){
                     if (yellow_letters[word[z]][m] == z){
                         dictionary.splice(i, 1); //remove the word
+                        i--;
                         doICont = true;
+                        cont = true;
+                        break;
                     }
                 }
-                if(doICont){continue;}
+                if(doICont){break;}
             }
         }
-    }
 
+        if(cont){
+            continue;
+        }
+    }
+    console.log("Length of new dictionary: " + dictionary.length);
+    console.log(dictionary);
 
     // TODO: Include letters that are guaranteed to be in word and the location the letter should be in if provided
 
