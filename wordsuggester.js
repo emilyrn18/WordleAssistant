@@ -151,4 +151,22 @@ for(tries=1; tries<7;tries++){
     // TODO: Include letters that are guaranteed to be in word and the location the letter should be in if provided
 
     // TODO: Produce up to top 10 word suggestions based on above criteria
+
+    //At the current state of user's mind and options left 
+    //eg. apple, eagle, bride, 
+    //check the letters that are green at this stage, black, and yellow
+    //this gives us the list ----- [brize, brine, brise]
+    //Now, we try to see the positions that are left for the correct letters
+    // bri?e ---- b??n?    4th try [a, l] ---- brute force, bl?n?       
+    // start at the first unknown pos - then if there are yellow list [check the highest probability among those] - apply that and conitue
+    //suggest sth like that,  
+    //yellow letter in green???? co[rr]ect ---- orlrol //edge case -----crane
+
+    //SUGGEST
+
+    for (p = 0; p < dictionary.length; p++){ //iterates through the new refined list
+        // n ? ? o ? ---- yellow_letters: 'n' - [0]   'o' - [3]     MANGO
+
+    }
+
 }
