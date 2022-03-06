@@ -15,7 +15,7 @@ function arrayContains(thearray, wordtofind)
 // TODO: Import or implement letter frequency in English language
 // TODO: Include user input of words already tried and how many tries user has left
 // Gets user input
-for(tries=1; tries<6;tries++){
+for(tries=1; tries<7;tries++){
     var usedword = prompt("Insert Word "+ tries +": ");
     usedword = usedword.toLowerCase();
 
