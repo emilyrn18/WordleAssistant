@@ -32,7 +32,7 @@ englishLettersFreq['Z'] = 0.10;
 
 var black_letters = [];
 var yellow_letters = {};
-var green_letters = {}
+var green_letters = {};
 
 //This determines to the word is within an array
 function arrayContains(thearray, wordtofind)
@@ -75,6 +75,44 @@ for(tries=1; tries<7;tries++){
     console.log("Black letters: " + black_letters);
     console.log("Yellow letters: " + yellow_letters["p"]);
     console.log("Green letters: " + green_letters["a"]);
+
+    //Trying to remove words with b, and refining the list by g and y
+    for (i = 0; i < dictionary.length; i++){
+        
+        //remove the words with b
+
+        var word = dictionary[i];
+        //black
+        for (x = 0; x < 5; x++){
+            if(arrayContains(black_letters, word[x])){
+                dictionary.splice(i, 1); //remove and skip the word
+                continue; 
+            }
+        }
+        //green
+        for (y = 0; y < 5; y++){
+            if (green_letters[word[y]] != null){
+                if (green_letters[word[y]] != y){
+                    dictionary.splice(i, 1); //remove the word
+                    continue;
+                }
+            }
+        }
+        //yellow
+        var doICont = false;
+        for (z = 0; z < 5; z++){
+            if (yellow_letters[word[z]] != null){
+                for (m = 0; m < yellow_letters[word[z]].length; m++){
+                    if (yellow_letters[word[z]][m] == z){
+                        dictionary.splice(i, 1); //remove the word
+                        doICont = true;
+                    }
+                }
+                if(doICont){continue;}
+            }
+        }
+    }
+
 
     // TODO: Include letters that are guaranteed to be in word and the location the letter should be in if provided
 
