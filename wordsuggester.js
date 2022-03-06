@@ -9,21 +9,19 @@ function arrayContains(thearray, wordtofind)
     return (thearray.indexOf(wordtofind) > -1);
 }
 
-// TODO: Import or implement letter frequency in English language
 
+// TODO: Import or implement letter frequency in English language
 // TODO: Include user input of letters already used
 // TODO: Include user input of words already tried and how many tries user has left
 // Gets user input
 var usedword = prompt("Insert Word: ");
+usedword = usedword.toLowerCase();
 
+if(arrayContains(dictionary, usedword)){
+    dictionary = dictionary.filter(e => e !== usedword);
+}
 
-// arr_usedwords.forEach(function(word){
-//     if(arrayContains(dictionary, word)){
-//         arr = arr.filter(e => e !== word);
-//     }
-// });
-
-console.log(arr_usedwords);
+console.log(usedword);
 
 // TODO: Include letters that are guaranteed to be in word and the location the letter should be in if provided
 
