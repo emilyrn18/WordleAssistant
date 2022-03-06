@@ -30,9 +30,12 @@ englishLettersFreq['X'] = 0.11;
 englishLettersFreq['Y'] = 2.0;
 englishLettersFreq['Z'] = 0.10;
 
+var frequency_words_order = ["E", "T", "A", "O", "I", "N", "S" , "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V","K","J","X","Q","Z"]
+
 var black_letters = [];
 var yellow_letters = {};
 var green_letters = {};
+var top_twenty_five = [];
 
 //This determines to the word is within an array
 function arrayContains(thearray, wordtofind)
@@ -166,7 +169,41 @@ for(tries=1; tries<7;tries++){
 
     for (p = 0; p < dictionary.length; p++){ //iterates through the new refined list
         // n ? ? o ? ---- yellow_letters: 'n' - [0]   'o' - [3]     MANGO
+        var word_2 = dictionary[p];
+        var pos_found = []
+        var pos_left = []
+        var keys_green = []
+        for (const [key, value] of Object.entries(green_letters)) {
+            keys_green.push(key);
+            for(h=0;h<value.length;h++){
+                pos_found.push(value[h]);
+            }
+        }
+
+        for(f=0; f<5; f++){
+            if(!pos_found.includes(f)){
+                pos_left.push(f)
+            }
+        }
+        
+        for(g=0; g<frequency_words_order.length;g++){
+            
+            if(!arrayContains(keys_green, frequency_words_order[g].toLowerCase())){
+                if(arrayContains(word_2, frequency_words_order[g].toLowerCase())){
+                    top_twenty_five.push(word_2);
+                    break;
+                }
+            }
+        }
+
+        if(top_twenty_five.length >= 25 || top_twenty_five.length >= dictionary.length){
+            break;
+        }
+
+        console.log(pos_left);
 
     }
-
+    console.log("TOP 25:");
+    console.log(top_twenty_five);
+    top_twenty_five = [];
 }
