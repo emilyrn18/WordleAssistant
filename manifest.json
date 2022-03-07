@@ -2,5 +2,10 @@
     "name": "Wordle Assistant",
     "description": "Assists people with Wordle",
     "version": "1.0",
-    "manifest_version": 2
+    "manifest_version": 2,
+    "content_scripts": [{
+        "matches": ["https://www.nytimes.com/games/wordle/index.html"],
+        "txt": ["parseddictionary.txt"],
+        "js": ["englishProb.js", "wordsuggester.js"]
+    }]
 }

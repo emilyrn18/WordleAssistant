@@ -33,7 +33,7 @@ function createdictionary(){
         function(words){
             words = words.filter(word => word.length == 5);
             var new_words = removewords(words);
-            fs.writeFile("./parseddictionary.txt", JSON.stringify(new_words), err => {
+            fs.writeFile("./parseddictionary.json", JSON.stringify(new_words), err => {
                 if (err) {
                   console.error(err)
                   return
