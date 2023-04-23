@@ -1,6 +1,24 @@
 {
   "dependencies": {
     "english-words": "^0.0.1",
+    "prompt-sync": "^4.2.0",
     "word-list": "^3.1.0"
-  }
+  },
+  "name": "wordleassistant",
+  "description": "This project is to help people with the wordle puzzles by providing them with suggestion words to try based on letter frequency and already used words.",
+  "version": "1.0.0",
+  "main": "englishProb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilyrn18/WordleAssistant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilyrn18/WordleAssistant/issues"
+  },
+  "homepage": "https://github.com/emilyrn18/WordleAssistant#readme"
 }

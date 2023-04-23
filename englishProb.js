@@ -26,3 +26,5 @@ englishLettersFreq['W'] = 2.3;
 englishLettersFreq['X'] = 0.11;
 englishLettersFreq['Y'] = 2.0;
 englishLettersFreq['Z'] = 0.10;
+
+export{englishLettersFreq};

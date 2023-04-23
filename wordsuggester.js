@@ -1,34 +1,12 @@
-import { dictionary } from './parseddictionary.js';
+import * as dict from './parseddictionary.js';
+var dictionary = dict.dictionary;
 
 // Import or implement letter frequency in English language
-const englishLettersFreq = new Object();
 //Percentage of occurances in the English Language
-englishLettersFreq['A'] = 8.2; 
-englishLettersFreq['B'] = 1.5;
-englishLettersFreq['C'] = 2.81;
-englishLettersFreq['D'] = 4.3;
-englishLettersFreq['E'] = 12.7;
-englishLettersFreq['F'] = 2.2;
-englishLettersFreq['G'] = 2.1;
-englishLettersFreq['H'] = 6.1;
-englishLettersFreq['I'] = 7.0;
-englishLettersFreq['J'] = 0.2;
-englishLettersFreq['K'] = 0.8;
-englishLettersFreq['L'] = 4.0;
-englishLettersFreq['M'] = 2.4;
-englishLettersFreq['N'] = 6.7;
-englishLettersFreq['O'] = 7.5;
-englishLettersFreq['P'] = 1.9;
-englishLettersFreq['Q'] = 0.12;
-englishLettersFreq['R'] = 6.0;
-englishLettersFreq['S'] = 6.3;
-englishLettersFreq['T'] = 9.1;
-englishLettersFreq['U'] = 2.8;
-englishLettersFreq['V'] = 1.0;
-englishLettersFreq['W'] = 2.3;
-englishLettersFreq['X'] = 0.11;
-englishLettersFreq['Y'] = 2.0;
-englishLettersFreq['Z'] = 0.10;
+import * as englishLettersFreq from './englishProb.js';
+var letterFreq = englishLettersFreq.englishLettersFreq;
+
+
 
 var frequency_words_order = ["E", "T", "A", "O", "I", "N", "S" , "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V","K","J","X","Q","Z"]
 
@@ -44,17 +22,16 @@ function arrayContains(thearray, wordtofind)
 }
 
 // Include user input of words already tried and how many tries user has left
-for(tries=1; tries<7;tries++){
+for(var tries=1; tries<7;tries++){
     var usedword = prompt("Insert Word "+ tries +": ");
     usedword = usedword.toLowerCase();
-
     if(arrayContains(dictionary, usedword)){
         dictionary = dictionary.filter(e => e !== usedword);
     }
     console.log(usedword);
 
 
-    for(i=0; i<5; i++){
+    for(var i=0; i<5; i++){
         var letter_type = prompt("What color was letter "+usedword[i]+"? Type 'g' for green, 'y' for yellow, and 'b' for black.");
         if(letter_type == "b"){
             if(!arrayContains(black_letters, usedword[i])){
@@ -85,7 +62,7 @@ for(tries=1; tries<7;tries++){
 
     console.log("Length of dictionary: " + dictionary.length);
     //Trying to remove words with b, and refining the list by g and y
-    for (i = 0; i < dictionary.length; i++){
+    for (var i = 0; i < dictionary.length; i++){
         
         //remove the words with b
 
@@ -95,7 +72,7 @@ for(tries=1; tries<7;tries++){
         var cont = false;
         for (const [key, value] of Object.entries(green_letters)) {
             // console.log(key, value);
-            for(h=0;h<value.length;h++){
+            for(var h=0;h<value.length;h++){
                 if(word[value[h]] != key){
                     dictionary.splice(i, 1); //remove the word
                     i--;
@@ -114,7 +91,7 @@ for(tries=1; tries<7;tries++){
         }
 
         //black
-        for (x = 0; x < 5; x++){
+        for (var x = 0; x < 5; x++){
             if(arrayContains(black_letters, word[x])){
                 dictionary.splice(i, 1); //remove and skip the word
                 i--;
@@ -128,10 +105,10 @@ for(tries=1; tries<7;tries++){
         }
         //yellow
         var doICont = false;
-        for (z = 0; z < 5; z++){
+        for (var z = 0; z < 5; z++){
             doICont = false;
             if (yellow_letters[word[z]] != null){
-                for (m = 0; m < yellow_letters[word[z]].length; m++){
+                for (var m = 0; m < yellow_letters[word[z]].length; m++){
                     if (yellow_letters[word[z]][m] == z){
                         dictionary.splice(i, 1); //remove the word
                         i--;
@@ -167,7 +144,7 @@ for(tries=1; tries<7;tries++){
 
     //SUGGEST
 
-    for (p = 0; p < dictionary.length; p++){ //iterates through the new refined list
+    for (var p = 0; p < dictionary.length; p++){ //iterates through the new refined list
         // n ? ? o ? ---- yellow_letters: 'n' - [0]   'o' - [3]     MANGO
         var word_2 = dictionary[p];
         var pos_found = []
@@ -180,13 +157,13 @@ for(tries=1; tries<7;tries++){
             }
         }
 
-        for(f=0; f<5; f++){
+        for(var f=0; f<5; f++){
             if(!pos_found.includes(f)){
                 pos_left.push(f)
             }
         }
         
-        for(g=0; g<frequency_words_order.length;g++){
+        for(var g=0; g<frequency_words_order.length;g++){
             
             if(!arrayContains(keys_green, frequency_words_order[g].toLowerCase())){
                 if(arrayContains(word_2, frequency_words_order[g].toLowerCase())){
